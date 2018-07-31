@@ -1,0 +1,178 @@
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+    color="#111">
+  <title>CodePen - Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel="stylesheet" href="app.css">
+
+
+  <script>
+    window.console = window.console || function (t) {};
+  </script>
+
+
+
+  <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+
+
+</head>
+
+<body translate="no" oncontextmenu="return false" onselectstart="return false" ondragstart="return false">
+
+
+
+  <div class="dashboard">
+    <header>
+      <div class="logo">
+        <img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_local_convenience_store_48px-512.png"
+          width="60" height="60">
+      </div>
+      <div class="menu">
+        <ul>
+          <li>
+            <a href="#!">Logs</a>
+            <i class="icon-down-open"></i>
+          </li>
+          <li>
+            <a href="#!">analitycs</a>
+            <i class="icon-down-open"></i>
+          </li>
+          <li>
+            <a href="#!">Real Time</a>
+            <i class="icon-down-open"></i>
+          </li>
+          <li>
+            <a href="#!">Alertas</a>
+            <i class="icon-down-open"></i>
+          </li>
+        </ul>
+      </div>
+      <div class="user-container">
+        <ul>
+          <li class="user">
+            <a href="#!" target="_blanck">
+              <img class="avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png">
+            </a>
+          </li>
+          <li class="user-dropdown">
+            <i class="icon-down-open"></i>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      <section class="filters-container">
+        <div class="filters">
+          <ul>
+            <li>
+              <div class="filters-count">
+                <span class="title-filter" id="hostname"></span>
+
+              </div>
+              <div class="searcher">
+                <button value="reset">Reiniciar Servicios</button>
+                <!-- <input type="text" placeholder="Text Filter"> -->
+              </div>
+            </li>
+            <li class="active">
+              <p>
+                <span class="title">region</span>
+                <span class="info">north west</span>
+              </p>
+              <i class="icon-right-open"></i>
+            </li>
+            <li class="active">
+              <p>
+                <span class="title">Memoria Libre</span>
+                <span class="info">H: N°234567</span>
+              </p>
+              <i class="icon-right-open"></i>
+            </li>
+            <li>
+              <p>
+                <span class="title">Total Memoria</span>
+                <span class="info current">current condition</span>
+              </p>
+              <i class="icon-right-open"></i>
+            </li>
+            <li class="active">
+                <p>
+                  <span class="title">Memoria Libre</span>
+                  
+                </p>
+                <p class="info" id="uptime"></p>
+                <i class="icon-right-open"></i>
+              </li>
+            <li>
+              <p>
+                <span class="title">Deploy 3.0</span>
+                <span class="info">All Instaces</span>
+              </p>
+              <i class="icon-right-open"></i>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+      <section class="switch-selector">
+        <div class="selector">
+          <ul>
+            <li>
+              <span class="head-title">Servidor</span>
+            </li>
+            <li>
+              <span id="ma01"></span>
+            </li>
+            <li>
+              <span id="ma02"></span>
+            </li>
+
+          </ul>
+        </div>
+      </section>
+      <main class="data-space">
+        <div class="header">
+          <h2>
+            <a id='my-texty'></a>
+            <a id='my-text'></a>
+          </h2>
+        </div>
+        <div class="charts-container">
+          <div class="last-mesurements">
+            <div class="console">
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js "></script>
+
+  <script src="app.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
