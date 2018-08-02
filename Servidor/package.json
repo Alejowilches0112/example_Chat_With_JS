@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "start": "node index.js",
     "dev": "nodemon index.js"
+=======
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+>>>>>>> 2c8890e6d1c1936702478e7864e4a8bea98a67c1
   },
   "author": "",
   "license": "ISC",

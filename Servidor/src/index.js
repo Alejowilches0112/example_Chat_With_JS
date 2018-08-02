@@ -20,7 +20,10 @@ app.use(express.urlencoded({extended : false}));
 
 //
 app.use('/api',serverRoutes);
+<<<<<<< HEAD:Servidor/index.js
 app.use('/api',logsRoutes);
+=======
+>>>>>>> 2c8890e6d1c1936702478e7864e4a8bea98a67c1:Servidor/src/index.js
 
 app.listen(app.get('port'), () => {
     console.log('server on port 3000')
