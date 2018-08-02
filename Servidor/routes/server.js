@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-router.get('https://img.adnerp.net/', (req,res,next)=> {
-    if(err) return next(err);
-    console.log(res.json);
+router.get('/server', (req, res, next) => {
+    res.redirect('https://img.adnerp.net/')
+   next();
 });
 
 module.exports = router;

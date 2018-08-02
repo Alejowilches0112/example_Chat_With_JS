@@ -6,6 +6,7 @@ const app = express();
 
 //file routes
 const serverRoutes = require('./routes/server');
+const logsRoutes = require('./routes/logs')
 
 //Settings
 app.set('port', process.env.PORT || 3000);
@@ -18,7 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 
 //
-app.use('/',serverRoutes);
+app.use('/api',serverRoutes);
+app.use('/api',logsRoutes);
 
 app.listen(app.get('port'), () => {
     console.log('server on port 3000')

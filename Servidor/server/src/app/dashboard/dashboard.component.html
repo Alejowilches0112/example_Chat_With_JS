@@ -1,17 +1,19 @@
-
 <div class="dashboard">
-    <header>
-      <div class="logo">
-        <img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_local_convenience_store_48px-512.png"
-          width="60" height="60">
-      </div>
-      <div class="menu">
-        <ul>
-          <li>
-            <a href="#!">Logs</a>
-            <i class="icon-down-open"></i>
-          </li>
-          <li>
+  <header>
+    <div class="logo">
+      <img src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_local_convenience_store_48px-512.png"
+        width="60" height="60">
+    </div>
+    <div class="menu">
+      <ul>
+        <li>
+          <a href="#!" (click)="change('Dashboard')">Dashboard</a>
+        </li>
+        <li *ngFor="let item of server">
+          <a href="#!" (click)="change(item,view)">{{item}}</a>
+          <i class="icon-down-open"></i>
+        </li>
+        <!-- <li>
             <a href="#!">analitycs</a>
             <i class="icon-down-open"></i>
           </li>
@@ -22,99 +24,165 @@
           <li>
             <a href="#!">Alertas</a>
             <i class="icon-down-open"></i>
-          </li>
-        </ul>
-      </div>
-      <div class="user-container">
+          </li> -->
+      </ul>
+    </div>
+    <div class="user-container">
+      <ul>
+        <li class="user">
+          <a href="#!" target="_blanck">
+            <img class="avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png">
+          </a>
+        </li>
+        <li class="user-dropdown">
+          <i class="icon-down-open"></i>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="container">
+    <section class="filters-container">
+      <div class="filters">
         <ul>
-          <li class="user">
-            <a href="#!" target="_blanck">
-              <img class="avatar" src="https://cdn1.iconfinder.com/data/icons/user-pictures/100/male3-512.png">
-            </a>
+          <li>
+            <div class="filters-count">
+              <span class="title-filter">{{hostname}}</span>
+
+            </div>
+            <div class="searcher">
+              <button value="reset">Reiniciar Servicios</button>
+              <!-- <input type="text" placeholder="Text Filter"> -->
+            </div>
           </li>
-          <li class="user-dropdown">
-            <i class="icon-down-open"></i>
+          <li class="active">
+            <p>
+              <span class="title">Modelo</span>
+              <span class="info">{{model}}</span>
+            </p>
+            <i class="icon-right-open"></i>
+          </li>
+          <li class="active">
+            <p>
+              <span class="title">Memoria Libre</span>
+              <span class="info">{{free_mem}} Megabytes</span>
+            </p>
+            <i class="icon-right-open"></i>
+          </li>
+          <li>
+            <p>
+              <span class="title">Total Memoria: </span>
+              <span class="info">{{all_mem}} Gigabytes</span>
+            </p>
+            <i class="icon-right-open"></i>
+          </li>
+          <li class="active">
+            <p>
+              <span class="title">uptime: </span>
+              <span class="info"> {{uptime}} </span>
+            </p>
+            <p class="info"></p>
+            <i class="icon-right-open"></i>
+          </li>
+          <li>
+            <p>
+              <span class="title">Deploy 3.0</span>
+              <span class="info">All Instaces</span>
+            </p>
+            <i class="icon-right-open"></i>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+    <section *ngIf="!dashboard" class="switch-selector">
+      <div class="selector">
+        <ul>
+          <li>
+            <a href="#!" class="head-title" (click)="vista('ERROR',server_actual)">LOGS ERROR</a>
+          </li>
+          <li>
+            <a href="#!" class="ma01" (click)="vista('OUT',server_actual)">LOGS OUT</a>
           </li>
         </ul>
       </div>
-    </header>
-    <div class="container">
-      <section class="filters-container">
-        <div class="filters">
-          <ul>
-            <li>
-              <div class="filters-count">
-                <span class="title-filter" >{{hostname}}</span>
-  
+    </section>
+    <main class="data-space">
+      <div class="last-mesurements" style="overflow:scroll; height:910px;">
+        <div *ngIf='dashboard' style="overflow:scroll; width:820px;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col" *ngFor="let item of server">{{item}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Exect_Mode</th>
+                <td *ngFor="let item of exect_mode">{{item}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Watch</th>
+                <td *ngFor="let item of watch">{{item}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Auto Restart</th>
+                <td *ngFor="let item of autorestart">{{item}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Pm_exec_path</th>
+                <td *ngFor="let item of exect_path">{{item}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Status</th>
+                <td *ngFor="let item of status">{{item}}</td>
+              </tr>
+              <tr>
+                <th scope="row">Restart Time</th>
+                <td *ngFor="let item of restarttime">{{item}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="!dashboard && view">
+          <div class="header">
+            <h2>
+              <a id='my-texty'>{{server_actual}}, (Logs Error)</a>
+            </h2>
+          </div>
+          <div class="charts-container">
+            <div class="last-mesurements">
+              <div class="console">
+                <div *ngFor="let item of logs" >
+                  <label><strong>{{item.fecha}}</strong></label>
+                  <br>
+                  <label> {{item.logs}}</label>
+                </div>
               </div>
-              <div class="searcher">
-                <button value="reset">Reiniciar Servicios</button>
-                <!-- <input type="text" placeholder="Text Filter"> -->
-              </div>
-            </li>
-            <li class="active">
-              <p>
-                <span class="title">Modelo</span>
-                <span class="info">{{model}}</span>
-              </p>
-              <i class="icon-right-open"></i>
-            </li>
-            <li class="active">
-              <p>
-                <span class="title">Memoria Libre</span>
-                <span class="info">{{memoria_libre}}</span>
-              </p>
-              <i class="icon-right-open"></i>
-            </li>
-            <li>
-              <p>
-                <span class="title">Total Memoria</span>
-                <span class="info current">{{total_memoria}}</span>
-              </p>
-              <i class="icon-right-open"></i>
-            </li>
-            <li class="active">
-                <p>
-                  <span class="title">Memoria Libre</span>
-                    
-                </p>
-                <p class="info" >{{uptime}}</p>
-                <i class="icon-right-open"></i>
-              </li>
-            <li>
-              <p>
-                <span class="title">Deploy 3.0</span>
-                <span class="info">All Instaces</span>
-              </p>
-              <i class="icon-right-open"></i>
-            </li>
-  
-          </ul>
-        </div>
-      </section>
-      <section class="switch-selector">
-        <div class="selector">
-          <ul>
-            <li *ngFor="let item of server">
-              <span class="head-title"></span>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <main class="data-space">
-        <div class="header">
-          <h2>
-            <a id='my-texty'></a>
-            <a id='my-text'></a>
-          </h2>
-        </div>
-        <div class="charts-container">
-          <div class="last-mesurements">
-            <div class="console">
             </div>
           </div>
         </div>
-      </main>
-    </div>
+
+        <div *ngIf="!dashboard && !view">
+          <div class="header">
+            <h2>
+              <a id='my-texty'>{{server_actual}}, (Logs Out)</a>
+            </h2>
+          </div>
+          <div class="charts-container">
+            <div class="last-mesurements">
+              <div class="console">
+                <div class="header" *ngFor="let item of logs" style="margin-bottom: 1rem">
+                  <label><strong>{{item.fecha}}</strong></label>
+                  <br>
+                  <p> {{item.logs}} </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
-  
+</div>
