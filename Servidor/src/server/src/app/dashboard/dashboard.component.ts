@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   private model: string;
   private all_mem: number;
   private free_mem: number;
+  private path_log : String;
 
   private exect_mode = [];
   private watch = [];
@@ -43,7 +44,8 @@ export class DashboardComponent implements OnInit {
       this.model = res['monit']['cpu']['0']['model'];
       this.all_mem = Math.trunc(res['monit']['total_mem'] / (this.giga * 1024));
       this.free_mem = Math.trunc((res['monit']['free_mem']) / this.giga);
-
+      this.path_log = res['processes'][0]['pm2_env']['pm_err_log_path'];
+      console.log(this.path_log)
       for (let item of res['processes']) {
         if (item['name'] == 'server' || item['name'] == 'server_api' || item['name'] == 'serverSpa') {
           this.server.push(item['name']);
@@ -53,6 +55,7 @@ export class DashboardComponent implements OnInit {
           this.restarttime.push(item['pm2_env']['restart_time']);
           this.watch.push(item['pm2_env']['watch']);
           this.exect_mode.push(item['pm2_env']['exec_mode']);
+          
         }
 
 
@@ -88,7 +91,7 @@ export class DashboardComponent implements OnInit {
         if (view) {
           this.view_act = 'Logs Error'
           this.service.getLogErrServer().subscribe(res => {
-            this.logs = res;
+            
           });
         }
         else {
@@ -97,7 +100,6 @@ export class DashboardComponent implements OnInit {
             this.logs = res;
           });
         }
-        console.log(this.view)
         break;
 
       case 'server_api':

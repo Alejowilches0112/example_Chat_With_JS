@@ -3,6 +3,7 @@ var control = require('../controller/controller')
 
 
 path = 'C:/Users/cwilches/Documents/Info_Servidor/dashboardPm2/Angular_Node/logs/logs';
+pathl= '/root/.pm2/logs';
 
 file_api = 'server-api-error-';
 file_api1 = 'server-api-out-';
@@ -16,32 +17,27 @@ file_spa1 = 'server-spa-out-';
 
 Router.get('/logs_error/server', (req, res, next) => {
 	res.json(control(path, file_serv));
-	next();
+	res.end();
 });
 
 Router.get('/logs_out/server', (req, res, next) => {
 	res.json(control(path, file_serv1));
-	next();
 });
 
 Router.get('/logs_error/server_api', (req, res, next) => {
 	res.json(control(path, file_api));
-	next();
 });
 
 Router.get('/logs_out/server_api', (req, res, next) => {
 	res.json(control(path, file_api));
-	next();
 });
 
 Router.get('/logs_error/server_spa', (req, res, next) => {
 	res.json(control(path, file_spa));
-	next();
 });
 
 Router.get('/logs_out/server_spa', (req, res, next) => {
 	res.json(control(path, file_spa1));
-	next();
 });
 
 module.exports = Router;
